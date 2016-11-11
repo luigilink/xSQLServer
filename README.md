@@ -354,8 +354,6 @@ Please check out common DSC Resources [contributing guidelines](https://github.c
   - Added support for clustered SQL instances
   - BREAKING CHANGE: Updated parameters to align with other resources (SQLServer / SQLInstanceName)
 * Created unit tests for xSQLServerConfiguration resource
-* Fix in xSQLAlias
-  - BREAKING CHANGE: The type of the parameter TCPPort has changed. It is now String Type.
 * Changes to xSQLAlias
   - Add UseDynamicTcpPort parameter for option "Dynamically determine port"
 
