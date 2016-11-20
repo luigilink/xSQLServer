@@ -14,7 +14,7 @@ function Get-TargetResource
         [ValidateNotNullOrEmpty()]
         [System.String]
         $Name,
-  
+
         [Parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]
         [System.String]
@@ -38,8 +38,8 @@ function Get-TargetResource
     $itemValue = Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\MSSQLServer\Client\ConnectTo' `
                                   -Name $Name `
                                   -ErrorAction SilentlyContinue
-    
-    if (((Get-WmiObject -Class win32_OperatingSystem).OSArchitecture) -eq '64-bit')
+
+if (((Get-WmiObject -Class win32_OperatingSystem).OSArchitecture) -eq '64-bit')
     {
         Write-Verbose -Message "64-bit Operating System. Also get the client alias $Name from Wow6432Node"
         
@@ -50,8 +50,8 @@ function Get-TargetResource
     }
     
     if ((-not $isWow6432Node -and $null -ne $itemValue ) -or `
-       (($null -ne $itemValue -and $null -ne $itemValueWow6432Node) -and `
-       ($isWow6432Node -and $itemValueWow6432Node."$Name" -eq $itemValue."$Name")))
+            (($null -ne $itemValue -and $null -ne $itemValueWow6432Node) -and `
+            ($isWow6432Node -and $itemValueWow6432Node."$Name" -eq $itemValue."$Name")))
     {
         $itemConfig = $itemValue."$Name" | ConvertFrom-Csv -Header 'Protocol','ServerName','TcpPort'
         if ($itemConfig)
@@ -77,7 +77,7 @@ function Get-TargetResource
                 $returnValue.Ensure = 'Present'
                 $returnValue.Protocol = 'NP'
                 $returnValue.PipeName = $itemConfig.ServerName
-            }
+                }
         }
         else 
         {
@@ -228,7 +228,6 @@ function Test-TargetResource
     )
 
     Write-Verbose -Message "Testing the SQL Server Client Alias $Name"
-     
     $result = $false
 
     $parameters = @{
