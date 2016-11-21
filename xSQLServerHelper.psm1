@@ -1605,3 +1605,4 @@ function Remove-SqlDatabasePermission
                                    -ErrorCategory InvalidResult
     }
 }
+
